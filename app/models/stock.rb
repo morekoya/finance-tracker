@@ -20,4 +20,8 @@ class Stock < ApplicationRecord
     number.to_s.gsub(',', '')
   end
 
+  def show
+    
+  end
+
 end

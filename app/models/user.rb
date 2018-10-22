@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :validatable
 
   has_many :user_stocks
   has_many :stocks, through: :user_stocks
@@ -58,5 +58,10 @@ class User < ApplicationRecord
 
   def self.matches(field_name, param)
     User.where("#{field_name} like ?", "%#{param}%")
+  end
+
+  def show
+    @user = User.find(params[:id])
+    @user_stocks = @user.stocks
   end
 end
